@@ -1,0 +1,25 @@
+.alert {
+  padding: 15px 20px;
+  margin: 10px auto;
+  border-radius: 6px;
+  max-width: 400px;
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+
+  &--info {
+    background-color: #61affe;
+  }
+
+  &--success {
+    background-color: #49cc90;
+  }
+
+  &--process {
+    background-color: #fca03e;
+  }
+
+  &--error {
+    background-color: #f93e3e;
+  }
+}
