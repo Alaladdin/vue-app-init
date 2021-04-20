@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { productsPerPage } from '@/config';
 import { mapActions } from 'vuex';
 import ProductFilter from '@/components/Product/ProductFilter.vue';
 import ProductList from '@/components/Product/ProductList.vue';
@@ -51,7 +52,7 @@ export default {
         selectedColor: 0,
       },
       page: 1,
-      productsPerPage: 6,
+      productsPerPage: productsPerPage || 6,
       productsData: null,
       productsLoading: false,
       productsLoadingFailed: false,

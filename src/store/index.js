@@ -85,7 +85,8 @@ export default new Vuex.Store({
         .then((res) => {
           ctx.commit('updateOrderInfo', res.data);
           return res.data;
-        });
+        })
+        .catch(() => ctx.commit('updateOrderInfo', null));
     },
     order(ctx, { formData }) {
       return axios.post(`${API_BASE_URL}/api/orders`, {

@@ -6,7 +6,7 @@
         <use xlink:href='#icon-minus'></use>
       </svg>
     </button>
-    <input type='number' min='1' name='count' v-model.number='currentCount'>
+    <input type='number' :min='min' :max='max' name='count' v-model.number='currentCount'>
     <button type='button' aria-label='Добавить один товар'
             @click.prevent='updateCounter(currentCount + 1)'>
       <svg width='10' height='10' fill='currentColor'>
@@ -20,7 +20,12 @@
 export default {
   name: 'BaseCounter',
   props: {
+    max: Number,
     count: {
+      type: Number,
+      default: 0,
+    },
+    min: {
       type: Number,
       default: 0,
     },
@@ -32,12 +37,14 @@ export default {
   },
   watch: {
     currentCount(value) {
-      this.$emit('update:count', value);
+      // keep out of bounds
+      if (this.min && value < this.min) this.currentCount = this.min;
+      if (this.max && value > this.max) this.currentCount = this.max;
+      this.$emit('update:count', parseInt(value, 10));
     },
   },
   methods: {
     updateCounter(value) {
-      if (value <= 0) return;
       this.currentCount = value;
     },
   },

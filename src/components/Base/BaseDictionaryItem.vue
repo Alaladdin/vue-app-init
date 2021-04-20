@@ -9,8 +9,8 @@
 export default {
   name: 'BaseDictionaryItem',
   props: {
-    title: String || Number,
-    value: String || Number,
+    title: [String, Number],
+    value: [String, Number],
   },
 };
 </script>

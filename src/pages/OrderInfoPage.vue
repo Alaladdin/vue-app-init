@@ -77,23 +77,30 @@ export default {
     CartOrders,
     CartTotal,
   },
-  created() {
-    const { orderInfo } = this.$store.state;
-    const orderId = this.$route.params.id;
+  watch: {
+    '$route.params.id': {
+      immediate: true,
+      handler(orderId) {
+        const { orderInfo } = this.$store.state;
 
-    if (!orderInfo || (orderInfo.id !== orderId)) {
-      this.loadOrderData(orderId)
-        .catch(console.error)
-        .then(this.getOrderData);
-    } else {
-      this.getOrderData();
-    }
+        this.isLoading = true;
+        this.error = false;
+
+        if (!orderInfo || (orderInfo.id !== orderId)) {
+          this.loadOrderData(orderId)
+            .catch(console.error)
+            .then(this.getOrderData);
+        } else {
+          this.getOrderData();
+        }
+      },
+    },
   },
   methods: {
     ...mapActions(['loadOrderInfo']),
     ...mapGetters(['orderInfo']),
-    loadOrderData(orderId) {
-      return this.loadOrderInfo(orderId || this.$route.params.id);
+    loadOrderData(orderId = this.$route.params.id) {
+      return this.loadOrderInfo(orderId);
     },
     getOrderData() {
       const data = this.orderInfo();

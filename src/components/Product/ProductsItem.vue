@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import BaseColorsToggler from '@/components/Base/BaseColorsToggler.vue';
 import numberFormat from '@/helpers/numberFormat';
+import BaseColorsToggler from '@/components/Base/BaseColorsToggler.vue';
 
 export default {
   name: 'ProductItem',

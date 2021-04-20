@@ -54,7 +54,11 @@
             </fieldset>
 
             <div class='item__row'>
-              <BaseCounter :count.sync='productAmount' v-model='productAmount'/>
+              <BaseCounter :min='1'
+                           :max='100'
+                           :count.sync='productAmount'
+                           v-model.number='productAmount'
+              />
 
               <button
                 class='button button--primery'
@@ -166,9 +170,9 @@ export default {
     },
     '$route.params.id': {
       immediate: true,
-      handler() {
+      handler(productId) {
         this.productLoading = true;
-        this.loadProduct({ productId: this.$route.params.id })
+        this.loadProduct({ productId })
           .then((res) => {
             if (res.status !== 200) throw new Error('Not found');
             this.productData = res.data;
