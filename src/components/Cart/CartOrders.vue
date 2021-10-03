@@ -2,7 +2,7 @@
   <ul class='cart__orders'>
     <li class='cart__order' v-for='product in products' :key='product.product.id'>
       <h3>{{ product.product.title }}</h3>
-      <b>{{ product.product.price * product.amount | numberFormat }} ₽</b>
+      <b>{{ numberFormat(product.product.price * product.amount)  }} ₽</b>
       <span>Артикул: {{ product.product.id }}</span>
     </li>
   </ul>
@@ -26,7 +26,7 @@ export default {
       required: true,
     },
   },
-  filters: {
+  methods: {
     numberFormat,
   },
 };

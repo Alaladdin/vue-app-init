@@ -10,18 +10,17 @@
       </router-link>
     </h3>
 
-    <span class='catalog__price'>{{ product.price | numberFormat }} ₽</span>
+    <span class='catalog__price'>{{ product.price }} ₽</span>
 
     <BaseColorsToggler
       class='colors--black'
       :colors='product.colors'
-      :selectedColor.sync='selectedColor'
+      v-model:selectedColor='selectedColor'
     />
   </li>
 </template>
 
 <script>
-import numberFormat from '@/helpers/numberFormat';
 import BaseColorsToggler from '@/components/Base/BaseColorsToggler.vue';
 
 export default {
@@ -32,8 +31,10 @@ export default {
   props: {
     product: Object,
   },
-  filters: {
-    numberFormat,
+  data() {
+    return {
+      selectedColor: 0,
+    };
   },
   watch: {
     selectedColor(value) {
@@ -42,11 +43,6 @@ export default {
   },
   created() {
     this.selectedColor = this.product.colors[0].id;
-  },
-  data() {
-    return {
-      selectedColor: 0,
-    };
   },
 };
 </script>

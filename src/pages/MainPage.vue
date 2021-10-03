@@ -10,10 +10,10 @@
 
     <div class='content__catalog'>
       <ProductFilter
-        :selectedColor.sync='filter.selectedColor'
-        :priceFrom.sync='filter.priceFrom'
-        :priceTo.sync='filter.priceTo'
-        :categoryId.sync='filter.categoryId'
+        v-model:selectedColor='filter.selectedColor'
+        v-model:priceFrom='filter.priceFrom'
+        v-model:priceTo='filter.priceTo'
+        v-model:categoryId='filter.categoryId'
       />
 
       <section class='catalog'>
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { productsPerPage } from '@/config';
 import { mapActions } from 'vuex';
+import { productsPerPage } from '@/config';
 import ProductFilter from '@/components/Product/ProductFilter.vue';
 import ProductList from '@/components/Product/ProductList.vue';
 import BasePagination from '@/components/Base/BasePagination.vue';

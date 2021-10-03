@@ -1,11 +1,8 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import axios from 'axios';
 import { API_BASE_URL } from '@/config';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
   state: {
     userAccessKey: null,
     cartProducts: [],

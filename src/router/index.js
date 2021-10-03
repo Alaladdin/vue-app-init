@@ -1,13 +1,11 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '@/pages/MainPage.vue';
 import ProductPage from '@/pages/ProductPage.vue';
 import CartPage from '@/pages/CartPage.vue';
 import OrderPage from '@/pages/OrderPage.vue';
 import OrderInfoPage from '@/pages/OrderInfoPage.vue';
 import NotFoundPage from '@/pages/NotFoundPage.vue';
-
-Vue.use(VueRouter);
+import vueConfig from '@/../vue.config';
 
 const routes = [
   {
@@ -38,10 +36,13 @@ const routes = [
   {
     name: 'notFound',
     component: NotFoundPage,
-    path: '*',
+    path: '/:pathMatch(.*)*',
   },
 ];
 
-const router = new VueRouter({ routes });
+const router = createRouter({
+  history: createWebHistory(vueConfig.publicPath),
+  routes,
+});
 
 export default router;

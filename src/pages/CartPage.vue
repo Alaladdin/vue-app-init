@@ -24,7 +24,7 @@
 
         <div class='cart__block'>
           <p class='cart__desc'>Мы посчитаем стоимость доставки на следующем этапе</p>
-          <p class='cart__price'>Итого: <span>{{ cartTotalPrice | numberFormat }} ₽</span></p>
+          <p class='cart__price'>Итого: <span>{{ cartTotalPrice }} ₽</span></p>
           <router-link
             v-if='cartTotalProducts'
             class='cart__button button button--primery' tag='button' :to='{ name: "order" }'>
@@ -56,10 +56,8 @@ export default {
     declinationFormat,
   },
   computed: {
-    ...mapGetters([
-      'cartDetailProducts',
-      'cartTotalPrice',
-    ]),
+    ...mapGetters(['cartDetailProducts', 'cartTotalPrice']),
+
     cartTotalProducts() {
       return this.cartDetailProducts.length;
     },

@@ -1,10 +1,10 @@
 <template>
   <div class='cart__total'>
-    <p>Доставка: <b>{{ deliveryPrice | numberFormat }} ₽</b></p>
+    <p>Доставка: <b>{{ numberFormat(deliveryPrice) }} ₽</b></p>
     <p>
       Итого: <b>{{ totalProducts }}</b>
       {{ declinationFormat(totalProducts, ['товар', 'товара', 'товаров']) }} на сумму
-      <b>{{ totalPrice | numberFormat }} ₽</b>
+      <b>{{ numberFormat(totalPrice) }} ₽</b>
     </p>
   </div>
 </template>
@@ -29,10 +29,8 @@ export default {
       required: true,
     },
   },
-  filters: {
-    numberFormat,
-  },
   methods: {
+    numberFormat,
     declinationFormat,
   },
 };

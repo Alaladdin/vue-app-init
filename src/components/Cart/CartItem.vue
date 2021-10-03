@@ -10,9 +10,9 @@
     </p>
     <span class='product__code'>Артикул: {{ item.productId }}</span>
 
-    <BaseCounter class='product__counter' :count.sync='amount'/>
+    <BaseCounter class='product__counter' v-model:count='amount'/>
 
-    <b class='product__price'>{{ item.product.price * item.amount | numberFormat }} ₽</b>
+    <b class='product__price'>{{ numberFormat(item.product.price * item.amount) }} ₽</b>
 
     <button class='product__del button-del' type='button' aria-label='Удалить товар из корзины'
             @click.prevent='deleteCartProduct(item.productId)'>
@@ -30,18 +30,10 @@ import BaseCounter from '@/components/Base/BaseCounter.vue';
 
 export default {
   name: 'CartItem',
+  components: { BaseCounter },
   props: {
     item: Object,
     colors: Array,
-  },
-  filters: {
-    numberFormat,
-  },
-  components: {
-    BaseCounter,
-  },
-  methods: {
-    ...mapActions(['deleteCartProduct']),
   },
   computed: {
     amount: {
@@ -55,6 +47,11 @@ export default {
         });
       },
     },
+  },
+  methods: {
+    ...mapActions(['deleteCartProduct']),
+
+    numberFormat,
   },
 };
 </script>

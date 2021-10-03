@@ -8,11 +8,12 @@
 
         <!-- PriceFrom -->
         <label class='form__label form__label--price'>
-          <input class='form__input'
-                 type='number'
-                 name='min-price'
-                 min='0'
-                 v-model.number='currentPriceFrom'>
+          <input
+            class='form__input'
+            type='number'
+            name='min-price' min='0'
+            v-model.number='currentPriceFrom'
+          >
           <span class='form__value'>От</span>
         </label>
 
@@ -41,7 +42,7 @@
 
       <fieldset class='form__block'>
         <legend class='form__legend'>Цвет</legend>
-        <BaseColorsToggler :colors='colors' :selectedColor.sync='currentColor'/>
+        <BaseColorsToggler :colors='colors' v-model:selectedColor='currentColor'/>
       </fieldset>
 
       <fieldset class='form__block'>

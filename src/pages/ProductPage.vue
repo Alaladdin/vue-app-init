@@ -20,11 +20,11 @@
         <h2 class='item__title'>{{ product.title }}</h2>
         <div class='item__form'>
           <form class='form' action='#' method='POST' @submit.prevent='addToCart'>
-            <b class='item__price'>{{ product.price | numberFormat }} ₽</b>
+            <b class='item__price'>{{ product.price }} ₽</b>
 
             <fieldset class='form__block'>
               <legend class='form__legend'>Цвет:</legend>
-              <BaseColorsToggler :colors='colors' :selectedColor.sync='selectedColor'/>
+              <BaseColorsToggler :colors='colors' v-model:selectedColor='selectedColor'/>
             </fieldset>
 
             <fieldset class='form__block'>
@@ -56,8 +56,8 @@
             <div class='item__row'>
               <BaseCounter :min='1'
                            :max='100'
-                           :count.sync='productAmount'
-                           v-model.number='productAmount'
+                           v-model:count='productAmount'
+                           v-model:productAmount.number='productAmount'
               />
 
               <button
@@ -155,9 +155,6 @@ export default {
     BaseCounter,
     BaseColorsToggler,
   },
-  filters: {
-    numberFormat,
-  },
   watch: {
     selectedColor(value) {
       this.selectedColor = value;
@@ -202,6 +199,8 @@ export default {
       'addProductToCart',
       'loadProduct',
     ]),
+
+    numberFormat,
     addToCart() {
       this.productAdded = false;
       this.productAddSending = true;
